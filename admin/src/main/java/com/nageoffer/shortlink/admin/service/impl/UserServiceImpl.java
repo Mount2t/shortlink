@@ -10,6 +10,7 @@ import com.nageoffer.shortlink.admin.common.enums.UserErrorCodeEnum;
 import com.nageoffer.shortlink.admin.dao.entity.UserDO;
 import com.nageoffer.shortlink.admin.dao.mapper.UserMapper;
 import com.nageoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.nageoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.nageoffer.shortlink.admin.dto.resp.UserRespDTO;
 import com.nageoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -71,5 +72,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements U
         } finally {
             lock.unlock();
         }
+    }
+
+    @Override
+    public void update(UserUpdateReqDTO requestParam) {
+        // TODO 验证当前用户名是否为登录用户
+        LambdaQueryWrapper<UserDO> updateWrapper = Wrappers.lambdaQuery(UserDO.class)
+                .eq(UserDO::getUsername, requestParam.getUsername());
+        baseMapper.update(BeanUtil.toBean(requestParam, UserDO.class),updateWrapper);
     }
 }
