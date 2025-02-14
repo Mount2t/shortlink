@@ -6,7 +6,7 @@ import lombok.Data;
  * 短链接分组返回实体
  */
 @Data
-public class ShortLinkGroupSaveRespDTO {
+public class ShortLinkGroupRespDTO {
     /**
      * 分组标识
      */

@@ -1,6 +1,5 @@
 package com.nageoffer.shortlink.admin.config;
 
-
 import com.nageoffer.shortlink.admin.common.bit.user.UserTransmitFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
