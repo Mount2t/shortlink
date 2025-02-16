@@ -66,7 +66,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, GroupDO> implemen
                     .filter(item -> Objects.equals(item.getGid(), each.getGid()))
                     .findFirst();
             first.ifPresent(item -> each.setShortLinkCount(first.get().getShortLinkCount()));
-            });
+        });
         return shortLinkGroupRespDTOList;
     }
 
