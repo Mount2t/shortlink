@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShortLinkCreateRespDTO {
 
+
     /**
      * 分组信息
      */
