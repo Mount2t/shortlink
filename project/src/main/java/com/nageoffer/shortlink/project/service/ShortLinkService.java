@@ -20,6 +20,7 @@ import java.util.List;
 public interface ShortLinkService extends IService<ShortLinkDO> {
     /**
      * 创建短链接
+     *
      * @param requestParam 创建短链接请求参数
      * @return 短链接创建信息
      */
@@ -34,6 +35,7 @@ public interface ShortLinkService extends IService<ShortLinkDO> {
 
     /**
      *  分页查询短链接
+     *
      * @param requestParam 分页查询短链接请求参数
      * @return 短链接分页返回结果
      */
@@ -49,6 +51,7 @@ public interface ShortLinkService extends IService<ShortLinkDO> {
 
     /**
      * 短链接跳转
+     *
      * @param shortUri 短链接后缀
      * @param request  HTTP请求
      * @param response HTTP 响应
