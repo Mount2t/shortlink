@@ -31,6 +31,9 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -79,6 +82,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 .shortUri(shortLinkSuffix)
                 .enableStatus(0)
                 .fullShortUrl(fullShortUrl)
+                .favicon(getFavicon(requestParam.getOriginUrl()))
                 .build();
         ShortLinkGotoDO linkGotoDO = ShortLinkGotoDO.builder()
                 .fullShortUrl(fullShortUrl)
@@ -260,5 +264,23 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
             customGenerateCount++;
         }
         return  shortUri;
+    }
+
+    private String getFavicon(String url) {
+        try {
+            Document doc = Jsoup.connect(url).get();
+            // 查找<link>标签中rel属性包含"icon"的元素
+            for (Element link : doc.select("link[rel~=(?i)icon]")) {
+                String faviconUrl = link.attr("href");
+                // 处理相对路径
+                if (!faviconUrl.startsWith("http")) {
+                    faviconUrl = url + faviconUrl; // 这里可以根据需要调整
+                }
+                return faviconUrl;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "未找到favicon";
     }
 }
