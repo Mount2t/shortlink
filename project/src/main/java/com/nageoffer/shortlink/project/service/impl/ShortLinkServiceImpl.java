@@ -335,7 +335,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                         .gid(gid)
                         .date(new Date())
                         .build();
-                linkLocaleStatsMapper.shortLinkLocaleStats(linkLocaleStatsDO);
+                linkLocaleStatsMapper.shortLinkLocaleState(linkLocaleStatsDO);
                 String os = LinkUtil.getOs(((HttpServletRequest) request));
                 LinkOsStatsDO linkOsStatsDO = LinkOsStatsDO.builder()
                         .os(os)
@@ -344,7 +344,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                         .gid(gid)
                         .date(new Date())
                         .build();
-                linkOsStatsMapper.shortLinkOsStats(linkOsStatsDO);
+                linkOsStatsMapper.shortLinkOsState(linkOsStatsDO);
                 String browser = LinkUtil.getBrowser(((HttpServletRequest) request));
                 LinkBrowserStatsDO linkBrowserStatsDO = LinkBrowserStatsDO.builder()
                         .browser(browser)
