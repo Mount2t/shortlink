@@ -9,7 +9,7 @@ import com.nageoffer.shortlink.admin.common.convention.result.Result;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinRecoverReqDTO;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinRemoveReqDTO;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinSaveReqDTO;
-import com.nageoffer.shortlink.admin.dto.req.ShortLinkStatsAccessRecordReqDTO;
+import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkStatsAccessRecordReqDTO;
 import com.nageoffer.shortlink.admin.remote.dto.req.*;
 import com.nageoffer.shortlink.admin.remote.dto.resp.*;
 import org.springframework.web.bind.annotation.RequestBody;

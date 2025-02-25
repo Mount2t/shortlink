@@ -2,7 +2,7 @@ package com.nageoffer.shortlink.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.shortlink.admin.common.convention.result.Result;
-import com.nageoffer.shortlink.admin.dto.req.ShortLinkStatsAccessRecordReqDTO;
+import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkStatsAccessRecordReqDTO;
 import com.nageoffer.shortlink.admin.remote.ShortLinkRemoteService;
 import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkStatsReqDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkStatsAccessRecordRespDTO;
