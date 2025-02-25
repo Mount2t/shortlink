@@ -89,15 +89,15 @@ public class ShortLinkDO extends BaseDO {
     /**
      * 历史PV
      */
-    private Integer total_pv;
+    private Integer totalPv;
 
     /**
      * 历史UV
      */
-    private Integer total_uv;
+    private Integer totalUv;
 
     /**
      * 历史UIP
      */
-    private Integer total_uip;
+    private Integer totalUip;
 }
