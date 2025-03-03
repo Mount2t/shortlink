@@ -1,4 +1,4 @@
-package com.nageoffer.shortlink.admin.common.bit.user;
+package com.nageoffer.shortlink.admin.common.biz.user;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import java.util.Optional;
