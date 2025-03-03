@@ -1,7 +1,6 @@
 package com.nageoffer.shortlink.admin.config;
 
-import com.nageoffer.shortlink.admin.common.bit.user.UserFlowRiskControlFilter;
-import com.nageoffer.shortlink.admin.common.bit.user.UserTransmitFilter;
+import com.nageoffer.shortlink.admin.common.biz.user.UserFlowRiskControlFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -18,9 +17,9 @@ public class UserConfiguration {
      * 用户信息传递过滤器
      */
     @Bean
-    public FilterRegistrationBean<UserTransmitFilter> globalUserTransmitFilter(StringRedisTemplate stringRedisTemplate) {
-        FilterRegistrationBean<UserTransmitFilter> registration = new FilterRegistrationBean<>();
-        registration.setFilter(new UserTransmitFilter(stringRedisTemplate));
+    public FilterRegistrationBean<com.nageoffer.shortlink.admin.common.biz.user.UserTransmitFilter> globalUserTransmitFilter() {
+        FilterRegistrationBean<com.nageoffer.shortlink.admin.common.biz.user.UserTransmitFilter> registration = new FilterRegistrationBean<>();
+        registration.setFilter(new com.nageoffer.shortlink.admin.common.biz.user.UserTransmitFilter());
         registration.addUrlPatterns("/*");
         registration.setOrder(0);
         return registration;
