@@ -27,10 +27,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
 import static com.nageoffer.shortlink.admin.common.constant.RedisCacheConstant.LOCK_USER_REGISTER_KEY;
 import static com.nageoffer.shortlink.admin.common.constant.RedisCacheConstant.USER_LOGIN_KEY;
 import static com.nageoffer.shortlink.admin.common.enums.UserErrorCodeEnum.*;
@@ -112,6 +112,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements U
         }
         Map<Object,Object> hasLoginMap = stringRedisTemplate.opsForHash().entries(USER_LOGIN_KEY + requestParam.getUsername());
         if (CollUtil.isNotEmpty(hasLoginMap)){
+            stringRedisTemplate.expire(USER_LOGIN_KEY + requestParam.getUsername(), 30L, TimeUnit.MINUTES);
             String token= hasLoginMap.keySet()
                     .stream().findFirst()
                     .map(Object::toString)
@@ -126,10 +127,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements U
          * Val：JSON字符串（用户信息）
          */
         String uuid = UUID.randomUUID().toString();
-        stringRedisTemplate.opsForValue().set(uuid, JSON.toJSONString(userDO),30L, TimeUnit.MINUTES);
-
-        Map<String, Object> userInfoMap = new HashMap<>();
-        userInfoMap.put("token",JSON.toJSONString(userDO));
         stringRedisTemplate.opsForHash().put(USER_LOGIN_KEY + requestParam.getUsername(),uuid,JSON.toJSONString(userDO));
         stringRedisTemplate.expire(USER_LOGIN_KEY+ requestParam.getUsername(),30L,TimeUnit.MINUTES);
         return new UserLoginRespDTO(uuid);
