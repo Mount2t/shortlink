@@ -422,7 +422,6 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
     @Override
         public IPage<ShortLinkStatsAccessRecordRespDTO> shortLinkStatsAccessRecord(ShortLinkStatsAccessRecordReqDTO requestParam) {
             LambdaQueryWrapper<LinkAccessLogsDO> queryWrapper = Wrappers.lambdaQuery(LinkAccessLogsDO.class)
-                    .eq(LinkAccessLogsDO::getGid, requestParam.getGid())
                     .eq(LinkAccessLogsDO::getFullShortUrl, requestParam.getFullShortUrl())
                     .between(LinkAccessLogsDO::getCreateTime, requestParam.getStartDate(), requestParam.getEndDate())
                     .eq(LinkAccessLogsDO::getDelFlag, 0)
