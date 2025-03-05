@@ -37,6 +37,7 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.D
 /**
  * 延迟记录短链接统计组件
  */
+@Deprecated
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -87,6 +88,6 @@ public class DelayShortLinkStatsConsumer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        onMessage();
+        //onMessage();
     }
 }
