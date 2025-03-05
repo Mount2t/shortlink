@@ -4,7 +4,7 @@
       <template #default>
         <div class="flex-box">
           <span class="percentage-value">{{ labels[0] }}: {{ data1Precentage }}%</span>
-          <span class="percentage-label">{{ data[0] }} 人</span>
+          <span class="percentage-label">{{ data[0] }} {{ labels[0] === '新访客' ? '人' : '次' }}</span>
         </div>
       </template>
     </el-progress>
@@ -12,7 +12,7 @@
       <template #default>
         <div class="flex-box">
           <span class="percentage-value">{{ labels[1] }}: {{ data2Precentage }}%</span>
-          <span class="percentage-label">{{ data[1] }} 人</span>
+          <span class="percentage-label">{{ data[1] }} {{ labels[1] === '旧访客' ? '人' : '次' }}</span>
         </div>
       </template>
     </el-progress>
@@ -39,26 +39,26 @@ const data2 = props.data[1]
 const data1Precentage = ref(0)
 const data2Precentage = ref(0)
 watch(
-  () => props.data,
-  () => {
-    const data1 = props.data[0]
-    const data2 = props.data[1]
-    // 分别计算不同的百分比
-    data1Precentage.value = (function () {
-      if (data1 === 0) {
-        return 0
-      } else {
-        return ((data1 / (data1 + data2)) * 100).toFixed(0)
-      }
-    })()
-    data2Precentage.value = (function () {
-      if (data2 === 0) {
-        return 0
-      } else {
-        return ((data2 / (data1 + data2)) * 100).toFixed(0)
-      }
-    })()
-  }
+    () => props.data,
+    () => {
+      const data1 = props.data[0]
+      const data2 = props.data[1]
+      // 分别计算不同的百分比
+      data1Precentage.value = (function () {
+        if (data1 === 0) {
+          return 0
+        } else {
+          return ((data1 / (data1 + data2)) * 100).toFixed(0)
+        }
+      })()
+      data2Precentage.value = (function () {
+        if (data2 === 0) {
+          return 0
+        } else {
+          return ((data2 / (data1 + data2)) * 100).toFixed(0)
+        }
+      })()
+    }
 )
 </script>
 
